@@ -8,29 +8,32 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
   <style>
-    :root{
-      --bg:#005c96;          /* fond */
-      --panel:#0f1733;       /* cartes */
-      --text:#eef2ff;        /* texte */
-      --muted:#aeb7d4;       /* texte secondaire */
-      --brand:#7c3aed;       /* couleur marque */
-      --brand-2:#22d3ee;     /* accent secondaire */
-      --ring: 0 0 0 4px color-mix(in srgb, var(--brand) 30%, transparent);
-      --radius: 16px;
-      --shadow: 0 10px 30px rgba(0,0,0,.25);
-    }
-    @media (prefers-color-scheme: light){
-      :root{ --bg:#f7f8ff; --panel:#ffffff; --text:#0b1020; --muted:#566083; --shadow:0 10px 30px rgba(12,15,40,.08); }
-      body{ background-image: radial-gradient(40rem 40rem at 100% 0%, #e9e6ff 0, transparent 60%), radial-gradient(40rem 40rem at 0% 100%, #dff9ff 0, transparent 60%);} 
-    }
-    *{ box-sizing: border-box }
+   :root {
+  --primary: #2666b0;   /* Bleu principal */
+  --secondary: #fc7701; /* Orange accent */
+  --background: #2666b0; /* ⚡ Fond = bleu logo */
+  --text: #ffffff;      /* Texte en blanc pour contraster */
+  --muted: #d0d6e5;     /* Gris clair */
+  --panel: #fc7701;     /* Fond clair des cartes/panneaux */
+  --brand: #2666b0;     /* Logo bleu */
+  --brand-2: #fc7701;   /* Logo orange */
+  --shadow: 0 10px 30px rgba(12,15,40,.08);
+  --radius: 12px;
+  --ring: 2px solid var(--secondary);
+}
+
+
+    *{ box-sizing: border-box; margin:0; padding:0 }
     html,body{ height:100% }
-    body{
-      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
-      background: radial-gradient(40rem 40rem at 100% 0%, #121a3c 0, transparent 60%), radial-gradient(40rem 40rem at 0% 100%, #0a2233 0, transparent 60%), var(--bg);
-      color:var(--text); line-height:1.6;
+    body {
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+      background: var(--background);
+      color: var(--text);
+      line-height: 1.6;
     }
+
     a{ color:var(--brand-2); text-decoration:none }
     a:hover{ text-decoration:underline }
 
@@ -38,12 +41,18 @@
     .container{ width:min(1100px, 92vw); margin-inline:auto; }
     header{
       position:sticky; top:0; z-index:40; backdrop-filter: saturate(150%) blur(8px);
-      background: color-mix(in srgb, var(--bg) 70%, transparent);
+      background: color-mix(in srgb, var(--background) 70%, transparent);
       border-bottom: 1px solid color-mix(in srgb, var(--text) 8%, transparent);
     }
     .nav{ display:flex; align-items:center; gap:1rem; padding:.75rem 0; }
     .brand{ display:flex; align-items:center; gap:.75rem; font-weight:800; letter-spacing:.3px; }
-    .logo{ width:36px; height:36px; border-radius:12px; background: linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow:var(--shadow); }
+    .brand img {
+      width:120px;   /* largeur */
+      height:80px;  /* hauteur */
+      border-radius:16px; /* arrondi adapté à la nouvelle taille */
+      box-shadow:var(--shadow);
+    }
+
     .spacer{ flex:1 }
     .menu{ display:flex; gap:.25rem; }
     .menu a{ padding:.5rem .9rem; border-radius:10px; font-weight:600; color:var(--text);}
@@ -54,36 +63,46 @@
     }
 
     /* Hero */
-    /* Hero principal avec image de fond */
-.hero-main {
-  background: url("image2.jpg") no-repeat center center/cover;
-  min-height: 600px;          /* augmente la hauteur de la zone */
-  padding: 120px 20px;        /* espace intérieur pour respirer */
-  border-radius: 16px;
-  color: white;               /* garde le texte lisible */
-  box-shadow: var(--shadow);
-  display: flex;
-  align-items: center;        /* centre verticalement le contenu */
-}
-
-    .hero{ padding:5rem 0 3rem; display:grid; grid-template-columns:1.2fr .8fr; gap:2rem; align-items:center; }
-    .hero h1{ font-size:clamp(2rem, 3.5vw + 1rem, 3.25rem); line-height:1.15; margin:0 0 1rem; }
-    .hero p{ color:var(--muted); margin:0 0 1.25rem; }
-    .hero .card{
-      background:linear-gradient(180deg, color-mix(in srgb, var(--panel) 70%, transparent), color-mix(in srgb, var(--panel) 95%, transparent));
-      padding:1rem; border-radius:var(--radius); box-shadow:var(--shadow);
+    .hero {
+      display: grid;
+      grid-template-areas:
+        "title title"
+        "image text";
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      padding:5rem 0 3rem;
     }
-    .hero video, .hero img{ width:100%; height:auto; border-radius:12px; display:block; }
+    .hero-title {
+      grid-area: title;
+      font-size: clamp(2rem, 3.5vw + 1rem, 3.25rem);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .hero-image { grid-area: image; }
+    .hero-image img {
+      width: 100%;
+      max-width: 700px;
+      border-radius: 8px;
+      display: block;
+    }
+    .hero-text {
+      grid-area: text;
+      align-self: start;
+      margin-left: 1rem;
+    }
+    .hero-text p {
+      color: var(--muted);
+      text-align: justify;
+    }
 
     /* Sections */
-    section{ padding:3rem 0; } background: ;
+    section{ padding:3rem 0; }
     section h2{ font-size:1.8rem; margin:0 0 1rem; }
     .muted{ color:var(--muted) }
 
     /* Galerie */
-    .grid{
-      display:grid; gap:1rem; grid-template-columns: repeat(12, 1fr);
-    }
+    .grid{ display:grid; gap:1rem; grid-template-columns: repeat(12, 1fr); }
     .card{ background:var(--panel); padding:1rem; border-radius:var(--radius); box-shadow:var(--shadow); }
     .gallery figure{ margin:0; }
     .gallery img{ width:100%; height:260px; object-fit:cover; border-radius:12px; display:block; }
@@ -102,20 +121,29 @@
     /* Vidéos */
     .videos{ display:grid; gap:1rem; grid-template-columns: repeat(12, 1fr) }
     .video-card{ grid-column: span 6; }
-    .video-card video, .video-card iframe{ width:100%; aspect-ratio:16/9; border:0; border-radius:12px; box-shadow:var(--shadow); }
+    .video-card video, .video-card iframe{ width:100%; aspect-ratio:16/9; border:0; border-radius:17px; box-shadow:var(--shadow); }
 
     /* Contact */
     form{ display:grid; gap:1rem; grid-template-columns: repeat(12, 1fr) }
     input, textarea{ width:100%; padding:.8rem 1rem; border-radius:12px; background: color-mix(in srgb, var(--panel) 80%, transparent); color:var(--text); border:1px solid color-mix(in srgb, var(--text) 10%, transparent); }
     label{ font-weight:600 }
     .actions{ display:flex; gap:.75rem; }
+    button[type="reset"]{ transition: all 0.2s ease; }
+    button[type="reset"]:hover{ background: color-mix(in srgb, var(--panel) 60%, transparent); }
 
     /* Footer */
     footer{ padding:2rem 0 4rem; color:var(--muted); font-size:.95rem; border-top: 1px solid color-mix(in srgb, var(--text) 8%, transparent) }
 
     /* Responsive */
     @media (max-width: 960px){
-      .hero{ grid-template-columns:1fr; }
+      .hero {
+        grid-template-areas:
+          "title"
+          "image"
+          "text";
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
       .player{ grid-column: span 12 }
       .playlist{ grid-column: span 12 }
       .video-card{ grid-column: span 12; }
@@ -129,12 +157,13 @@
     }
   </style>
 </head>
+
 <body>
   <header>
     <div class="container nav" role="navigation" aria-label="Navigation principale">
       <div class="brand">
-        <img src="logo.png"width=200>
-        
+        <img src="logo.png" alt="Logo TATI Production">
+        <span>le meilleur de sa génération</span>
       </div>
       <div class="spacer"></div>
       <nav class="menu" aria-label="Liens de page">
@@ -147,31 +176,38 @@
     </div>
   </header>
 
-  <main class="container hro-main">
+  <main class="container">
     <!-- Hero -->
-    <section class="hero" id="accueil"style=">
-      <div>
-        <h1>Création multimédia <span style="background:linear-gradient(90deg,var(--brand),var(--brand-2)); -webkit-background-clip:text; background-clip:text; color:transparent">éblouissante</span>.</h1>
-        <p class="muted">TATI Production est un label de proximité basé entre Dakar et Rufisque, au Sénégal, spécialisé dans la réalisation de vos vidéos. Notre mission est d’accompagner artistes, entreprises et particuliers dans la création de contenus audiovisuels de qualité, adaptés à leurs besoins et à leur vision. Avec une équipe passionnée et créative, nous donnons vie à vos projets en alliant savoir-faire technique et sens artistique. TATI Production, c’est l’assurance d’un service professionnel, proche de vous, pour raconter vos histoires de la plus belle manière.
- </p>
-        <div class="actions">
-          <a class="cta" href="#galerie">Voir la galerie</a>
-          <a class="cta" style="background:transparent; border:1px solid color-mix(in srgb, var(--text) 14%, transparent); color:var(--text)" href="#videos">Regarder les vidéos</a>
-        </div>
+    <section class="hero">
+      <h1 class="hero-title">
+        Création multimédia 
+        <span style="background:linear-gradient(90deg,var(--brand),var(--brand-2));
+                     -webkit-background-clip:text; background-clip:text; color:transparent">
+          éblouissante
+        </span>.
+      </h1>
+
+      <div class="hero-image">
+        <img src="image2.jpg" alt="Illustration TATI Production">
       </div>
-      <div class="card" aria-label="Aperçu vidéo">
-        <video controls preload="metadata" poster="https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1200&auto=format&fit=crop" aria-label="Bande démo">
-          <source src="https://cdn.coverr.co/videos/coverr-night-drive-8575/1080p.mp4" type="video/mp4" />
-          <p>Votre navigateur ne supporte pas la vidéo HTML5. <a href="#">Télécharger la vidéo</a>.</p>
-          <track kind="captions" srclang="fr" src="captions.vtt" label="Français" default>
-        </video>
+
+      <div class="hero-text">
+        <p>
+          TATI Production est un label de proximité basé entre Dakar et Rufisque, au Sénégal,
+          spécialisé dans la réalisation de vos vidéos. Notre mission est d’accompagner artistes,
+          entreprises et particuliers dans la création de contenus audiovisuels de qualité,
+          adaptés à leurs besoins et à leur vision. Avec une équipe passionnée et créative,
+          nous donnons vie à vos projets en alliant savoir-faire technique et sens artistique.
+          TATI Production, c’est l’assurance d’un service professionnel, proche de vous,
+          pour raconter vos histoires de la plus belle manière.
+        </p>
       </div>
     </section>
 
     <!-- Galerie -->
     <section id="galerie">
       <h2>Galerie</h2>
-      <p class="muted">Images avec légendes (lazy‑loading). Cliquez pour agrandir.</p>
+      <p class="muted">Images avec légendes (lazy-loading). Cliquez pour agrandir.</p>
       <div class="grid gallery" aria-live="polite">
         <figure class="card col-4">
           <img loading="lazy" src="https://picsum.photos/seed/gal1/800/600" alt="Portrait en lumière néon" />
@@ -217,10 +253,10 @@
       </div>
     </section>
 
-    <!-- Audio / Podcast -->
+    <!-- Audio -->
     <section id="audio">
       <h2>Audio & Podcast</h2>
-      <p class="muted">Lecteur audio simple avec mini‑playlist.</p>
+      <p class="muted">Lecteur audio simple avec mini-playlist.</p>
       <div class="media-row">
         <div class="player card">
           <audio id="audio" controls preload="metadata" aria-label="Lecteur audio">
@@ -249,29 +285,30 @@
     <!-- Contact -->
     <section id="contact">
       <h2>Contact</h2>
-      <p class="muted">Parlez‑nous de votre projet. Nous répondons sous 24h.</p>
-      <form class="card" onsubmit="event.preventDefault(); alert('Merci ! Votre message a bien été envoyé.'); this.reset();">
-        <div class="col-6">
-          <label for="name">Nom</label>
-          <input id="name" name="name" placeholder="Votre nom" required />
-        </div>
-        <div class="col-6">
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" placeholder="nom@domaine.com" required />
-        </div>
-        <div class="col-12">
-          <label for="subject">Objet</label>
-          <input id="subject" name="subject" placeholder="Sujet du message" />
-        </div>
-        <div class="col-12">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="5" placeholder="Décrivez votre besoin…" required></textarea>
-        </div>
-        <div class="col-12 actions">
-          <button class="cta" type="submit">Envoyer</button>
-          <button class="cta" type="reset" style="background:transparent; border:1px solid color-mix(in srgb, var(--text) 14%, transparent); color:var(--text)">Effacer</button>
-        </div>
-      </form>
+      <p class="muted">Parlez-nous de votre projet. Nous répondons sous 24h.</p>
+     <form class="card" action="mailto:tatiprodsn@gmail.com" method="post" enctype="text/plain">
+  <div class="col-6">
+    <label for="name">Nom</label>
+    <input id="name" name="Nom" placeholder="Votre nom" required />
+  </div>
+  <div class="col-6">
+    <label for="email">Email</label>
+    <input id="email" name="Email" type="email" placeholder="nom@domaine.com" required />
+  </div>
+  <div class="col-12">
+    <label for="subject">Objet</label>
+    <input id="subject" name="Objet" placeholder="Sujet du message" />
+  </div>
+  <div class="col-12">
+    <label for="message">Message</label>
+    <textarea id="message" name="Message" rows="5" placeholder="Décrivez votre besoin…" required></textarea>
+  </div>
+  <div class="col-12 actions">
+    <button class="cta" type="submit">Envoyer</button>
+    <button class="cta" type="reset" style="background:transparent; border:1px solid color-mix(in srgb, var(--text) 14%, transparent); color:var(--text)">Effacer</button>
+  </div>
+</form>
+
     </section>
   </main>
 
@@ -282,6 +319,7 @@
     </div>
   </footer>
 
+  <!-- Lightbox -->
   <dialog id="lightbox" style="border:none; padding:0; border-radius:16px; background:transparent;">
     <img id="lightbox-img" alt="Agrandissement" style="max-width:90vw; max-height:85vh; border-radius:16px; box-shadow:var(--shadow)" />
   </dialog>
@@ -290,7 +328,7 @@
     // Année dynamique
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Lightbox pour la galerie
+    // Lightbox galerie
     const dlg = document.getElementById('lightbox');
     const imgDlg = document.getElementById('lightbox-img');
     document.querySelectorAll('.gallery img').forEach(img => {
@@ -302,8 +340,10 @@
     });
     dlg?.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
 
-    // Playlist audio simple
+    // Playlist audio
     const audio = document.getElementById('audio');
+   
+
     const now = document.getElementById('now-playing');
     const buttons = Array.from(document.querySelectorAll('.track'));
     function setActive(btn){ buttons.forEach(b=>b.classList.toggle('active', b===btn)); }
