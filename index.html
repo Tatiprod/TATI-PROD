@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Massamba – Multimédia</title>
-  <meta name="description" content="site multimédia responsive avec vidéo, audio, galerie d’images et section contact." />
+  <meta name="description" content="site multimédia responsive avec vidéo, audio, galerie d'images et section contact." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -194,11 +194,11 @@
       <div class="hero-text">
         <p>
           TATI Production est un label de proximité basé entre Dakar et Rufisque, au Sénégal,
-          spécialisé dans la réalisation de vos vidéos. Notre mission est d’accompagner artistes,
+          spécialisé dans la réalisation de vos vidéos. Notre mission est d'accompagner artistes,
           entreprises et particuliers dans la création de contenus audiovisuels de qualité,
           adaptés à leurs besoins et à leur vision. Avec une équipe passionnée et créative,
           nous donnons vie à vos projets en alliant savoir-faire technique et sens artistique.
-          TATI Production, c’est l’assurance d’un service professionnel, proche de vous,
+          TATI Production, c'est l'assurance d'un service professionnel, proche de vous,
           pour raconter vos histoires de la plus belle manière.
         </p>
       </div>
@@ -250,10 +250,10 @@
       <p class="muted">Un court teaser pour présenter votre marque.</p>
     </div>
 
-    <!-- Deuxième Vidéo -->
+    <!-- Deuxième Vidéo - URL corrigée -->
     <div class="video-card card">
       <iframe 
-        src="https://youtu.be/hZeoKw-8tFs?si=a-54LDejlb-pncRn" 
+        src="https://www.youtube.com/embed/hZeoKw-8tFs" 
         title="Présentation de la marque"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
         allowfullscreen>
@@ -265,18 +265,15 @@
   </div>
 </section>
 
-
-
-
     <!-- Audio -->
     <section id="audio">
       <h2>Audio & Podcast</h2>
       <p class="muted">Lecteur audio simple avec mini-playlist.</p>
       <div class="media-row">
         <div class="player card">
-          <audio id="audio" controls preload="metadata" aria-label="Lecteur audio">
+          <audio id="audio-player" controls preload="metadata" aria-label="Lecteur audio">
             <source id="audio-src" src="https://www.kozco.com/tech/piano2-CoolEdit.mp3" type="audio/mpeg" />
-            Votre navigateur ne supporte pas l’audio HTML5.
+            Votre navigateur ne supporte pas l'audio HTML5.
           </audio>
           <p class="muted" id="now-playing">Lecture : Piano – Démo</p>
         </div>
@@ -304,18 +301,18 @@
 
   <form id="contact-form" class="card">
     <div class="col-6">
-      <label>Nom</label>
-      <input type="text" name="user_name" placeholder="Votre nom" required />
+      <label for="name">Nom</label>
+      <input type="text" id="name" name="user_name" placeholder="Votre nom" required />
     </div>
 
     <div class="col-6">
-      <label>Email</label>
-      <input type="email" name="user_email" placeholder="nom@domaine.com" required />
+      <label for="email">Email</label>
+      <input type="email" id="email" name="user_email" placeholder="nom@domaine.com" required />
     </div>
 
     <div class="col-12">
-      <label>Message</label>
-      <textarea name="message" rows="5" placeholder="Décrivez votre besoin…" required></textarea>
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="5" placeholder="Décrivez votre besoin…" required></textarea>
     </div>
 
     <div class="col-12 actions">
@@ -350,14 +347,12 @@
   </script>
 </section>
 
-
-
+  </main>
 
   <footer>
     <div class="container">
       <center>
-      <p>© <span id="year"></span><h2>Tati production — Tous droits réservés.</h2></p></center>
-      
+      <p>© <span id="year"></span> Tati production — Tous droits réservés.</p></center>
     </div>
   </footer>
 
@@ -383,25 +378,35 @@
     dlg?.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
 
     // Playlist audio
-    const audio = document.getElementById('audio');
-   
-
-    const now = document.getElementById('now-playing');
-    const buttons = Array.from(document.querySelectorAll('.track'));
-    function setActive(btn){ buttons.forEach(b=>b.classList.toggle('active', b===btn)); }
-    buttons.forEach(btn => {
+    const audioPlayer = document.getElementById('audio-player');
+    const nowPlaying = document.getElementById('now-playing');
+    const trackButtons = Array.from(document.querySelectorAll('.track'));
+    
+    function setActiveTrack(btn){ 
+      trackButtons.forEach(b => b.classList.toggle('active', b === btn)); 
+    }
+    
+    trackButtons.forEach(btn => {
       btn.addEventListener('click', () => {
         const src = btn.getAttribute('data-src');
         const title = btn.getAttribute('data-title');
-        document.getElementById('audio-src').src = src;
-        audio.load();
-        audio.play();
-        now.textContent = 'Lecture : ' + title;
-        setActive(btn);
+        
+        // Mettre à jour la source audio
+        const sourceElement = document.getElementById('audio-src');
+        sourceElement.src = src;
+        
+        // Recharger et jouer l'audio
+        audioPlayer.load();
+        audioPlayer.play().catch(e => console.log("Lecture automatique bloquée:", e));
+        
+        // Mettre à jour l'affichage
+        nowPlaying.textContent = 'Lecture : ' + title;
+        setActiveTrack(btn);
       });
     });
+    
     // Active par défaut
-    setActive(buttons[0]);
+    setActiveTrack(trackButtons[0]);
   </script>
 </body>
 </html>
