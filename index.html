@@ -297,7 +297,7 @@
       </div>
     </section>
 
-   <!-- Contact -->
+ <!-- Contact -->
 <section id="contact">
   <h2>Contact</h2>
   <p class="muted">Parlez-nous de votre projet. Nous répondons sous 24h.</p>
@@ -305,12 +305,12 @@
   <form id="contact-form" class="card">
     <div class="col-6">
       <label>Nom</label>
-      <input type="text" name="name" placeholder="Votre nom" required />
+      <input type="text" name="user_name" placeholder="Votre nom" required />
     </div>
 
     <div class="col-6">
       <label>Email</label>
-      <input type="email" name="email" placeholder="nom@domaine.com" required />
+      <input type="email" name="user_email" placeholder="nom@domaine.com" required />
     </div>
 
     <div class="col-12">
@@ -318,45 +318,38 @@
       <textarea name="message" rows="5" placeholder="Décrivez votre besoin…" required></textarea>
     </div>
 
-    <!-- Champ caché pour l'heure -->
-    <input type="hidden" name="time" id="time" />
-
     <div class="col-12 actions">
       <button class="cta" type="submit">Envoyer</button>
       <button class="cta" type="reset" style="background:transparent; border:1px solid color-mix(in srgb, var(--text) 14%, transparent); color:var(--text)">Effacer</button>
     </div>
   </form>
 
-  <p id="form-status" class="muted"></p>
-
   <!-- EmailJS -->
   <script src="https://cdn.emailjs.com/sdk/3.2/email.min.js"></script>
   <script>
-    emailjs.init("BlmLTp8zm6fmOgd7b"); // Ta clé publique
+    // Initialise EmailJS avec ta clé publique
+    (function(){
+      emailjs.init("BlmLTp8zm6fmOgd7b"); 
+    })();
 
-    const form = document.getElementById("contact-form");
-    const status = document.getElementById("form-status");
-
-    form.addEventListener("submit", function(e){
+    // Écoute la soumission du formulaire
+    document.getElementById("contact-form").addEventListener("submit", function(e){
       e.preventDefault();
 
-      // Ajouter l'heure d'envoi
-      document.getElementById("time").value = new Date().toLocaleString();
-
-      emailjs.sendForm("service_nokc4bj", "Contactez-nous", this)
-        .then(() => {
-          status.textContent = "✅ Message envoyé avec succès !";
-          status.style.color = "limegreen";
-          form.reset();
-        })
-        .catch(err => {
-          status.textContent = "❌ Erreur lors de l'envoi, veuillez réessayer.";
-          status.style.color = "tomato";
-          console.error(err);
-        });
+      emailjs.sendForm(
+        "service_nokc4bj",   // Ton service EmailJS
+        "Contactez-nous",     // Nom exact du template que tu as créé
+        this
+      ).then(() => {
+        alert("✅ Message envoyé avec succès !");
+        this.reset(); // Réinitialise le formulaire après envoi
+      }, (err) => {
+        alert("❌ Erreur : " + JSON.stringify(err));
+      });
     });
   </script>
 </section>
+
 
 
 
