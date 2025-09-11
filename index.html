@@ -298,60 +298,53 @@
     </section>
 
     <!-- Contact -->
-    <section id="contact">
-      <h2>Contact</h2>
-      <p class="muted">Parlez-nous de votre projet. Nous répondons sous 24h.</p>
-     <form class="card" action="mailto:tatiprodsn@gmail.com" method="post" enctype="text/plain">
-  <div class="col-6">
-    <label for="name">Nom</label>
-    <input id="name" name="Nom" placeholder="Votre nom" required />
-  </div>
-  <div class="col-6">
-    <label for="email">Email</label>
-    <input id="email" name="Email" type="email" placeholder="nom@domaine.com" required />
-  </div>
-  <div class="col-12">
-    <label for="subject">Objet</label>
-    <input id="subject" name="Objet" placeholder="Sujet du message" />
-  </div>
-  <div class="col-12">
-    <label for="message">Message</label>
-    <textarea id="message" name="Message" rows="5" placeholder="Décrivez votre besoin…" required></textarea>
-  </div>
-  <div class="col-12 actions">
-    <button class="cta" type="submit">Envoyer</button>
-    <button class="cta" type="reset" style="background:transparent; border:1px solid color-mix(in srgb, var(--text) 14%, transparent); color:var(--text)">Effacer</button>
-  </div>
-</form>
-<center>
-<br>
-<p>Suivez nous sur </p>
-<br>
+ <section id="contact">
+  <h2>Contact</h2>
+  <p class="muted">Parlez-nous de votre projet. Nous répondons sous 24h.</p>
 
-<table>
-  <tr>
-    <td>
-  <a href="https://www.facebook.com/prod.audiovisuelle/" target="_blank">
-    <img src="facebook.png" width="50" alt="Facebook">
-  </a>
-</td>
-<td>
-  <a href="https://www.youtube.com/@tatiprods/" target="_blank">
-    <img src="youtube_logo_icon_181745.png" width="50" alt="YouTube">
-  </a>
-</td>
-<td>
-  <a href="https://www.instagram.com/tatiproduction221/" target="_blank">
-    <img src="instagra.png" width="50" alt="Instagram">
-  </a>
-</td>
+  <form id="contact-form" class="card">
+    <div class="col-6">
+      <label>Nom</label>
+      <input type="text" name="user_name" placeholder="Votre nom" required />
+    </div>
 
-  </tr>
-</table>
-</center>
+    <div class="col-6">
+      <label>Email</label>
+      <input type="email" name="user_email" placeholder="nom@domaine.com" required />
+    </div>
 
-    </section>
-  </main>
+    <div class="col-12">
+      <label>Message</label>
+      <textarea name="message" rows="5" placeholder="Décrivez votre besoin…" required></textarea>
+    </div>
+
+    <div class="col-12 actions">
+      <button class="cta" type="submit">Envoyer</button>
+      <button class="cta" type="reset" style="background:transparent; border:1px solid color-mix(in srgb, var(--text) 14%, transparent); color:var(--text)">Effacer</button>
+    </div>
+  </form>
+
+  <!-- EmailJS -->
+  <script src="https://cdn.emailjs.com/sdk/3.2/email.min.js"></script>
+  <script>
+    (function(){
+      emailjs.init("BlmLTp8zm6fmOgd7b"); // Ta clé publique
+    })();
+
+    document.getElementById("contact-form").addEventListener("submit", function(e){
+      e.preventDefault();
+
+      emailjs.sendForm("service_nokc4bj", "template_xxxxx", this)
+        .then(() => {
+          alert("✅ Message envoyé avec succès !");
+          this.reset(); // Réinitialise le formulaire après envoi
+        }, (err) => {
+          alert("❌ Erreur : " + JSON.stringify(err));
+        });
+    });
+  </script>
+</section>
+
 
   <footer>
     <div class="container">
