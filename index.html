@@ -382,12 +382,40 @@
   </div>
 </section>
 
-  <audio id="audio-player" controls preload="auto" autoplay loop aria-label="Lecteur audio">
-  <source id="audio-src" src="tatimusic.mp3" type="audio/mpeg" />
-  Votre navigateur ne supporte pas l'audio HTML5.
-</audio>
-
-
+<!-- Section Audio -->
+<section id="audio">
+  <h2>Audio</h2>
+  <p class="muted">Écoutez nos dernières productions musicales.</p>
+  
+  <div class="media-row">
+    <div class="player card">
+      <audio id="audio-player" controls aria-label="Lecteur audio">
+        <source id="audio-src" src="tatimusic.mp3" type="audio/mpeg" />
+        Votre navigateur ne supporte pas l'audio HTML5.
+      </audio>
+      <p id="now-playing" style="margin-top: 10px; font-style: italic; color: var(--muted);">
+        Cliquez sur le bouton lecture pour démarrer la musique
+      </p>
+    </div>
+    
+    <div class="playlist">
+      <div class="track active" data-src="tatimusic.mp3">
+        <div>
+          <strong>TATI Music</strong><br>
+          <small>Production originale</small>
+        </div>
+        <span>3:42</span>
+      </div>
+      <div class="track" data-src="https://assets.codepen.io/21542/howler-demo-bummp3.mp3">
+        <div>
+          <strong>Exemple de piste</strong><br>
+          <small>Artiste inconnu</small>
+        </div>
+        <span>2:18</span>
+      </div>
+    </div>
+  </div>
+</section>
 
  <!-- Contact -->
 <section id="contact">
@@ -513,31 +541,46 @@
       }, 1000);
     });
     
-    // Tentative de lecture automatique de l'audio avec gestion d'erreur
-   <script>
-document.addEventListener("click", () => {
-  const audio = document.getElementById("audio-player");
-  if (audio.paused) {
-    audio.play().catch(err => console.log("Autoplay bloqué :", err));
-  }
-});
-</script>
-
-    // Essayer de jouer l'audio automatiquement
-    const tryAutoplay = () => {
-      const playPromise = audioPlayer.play();
-      
-      if (playPromise !== undefined) {
-        playPromise.catch(error => {
-          console.log("La lecture automatique a été bloquée:", error);
-          // Afficher un message pour l'utilisateur
-          document.getElementById('now-playing').textContent = "Cliquez sur le bouton lecture pour démarrer la musique";
-        });
-      }
-    };
+    // Gestion de l'audio
+    const audioPlayer = document.getElementById('audio-player');
+    const tracks = document.querySelectorAll('.track');
     
-    // Attendre que la page soit complètement chargée avant de tenter la lecture automatique
-    window.addEventListener('load', tryAutoplay);
+    // Fonction pour changer de piste
+    function changeTrack(src) {
+      audioPlayer.src = src;
+      audioPlayer.play().catch(error => {
+        console.log("Lecture audio bloquée:", error);
+        document.getElementById('now-playing').textContent = "Cliquez sur le bouton lecture pour démarrer la musique";
+      });
+      
+      // Mettre à jour l'interface
+      tracks.forEach(track => track.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+      
+      document.getElementById('now-playing').textContent = "En cours: " + event.currentTarget.querySelector('strong').textContent;
+    }
+    
+    // Ajouter les événements aux pistes
+    tracks.forEach(track => {
+      track.addEventListener('click', (e) => {
+        changeTrack(track.getAttribute('data-src'));
+      });
+    });
+    
+    // Démarrage de l'audio après interaction utilisateur
+    document.addEventListener('click', function initAudio() {
+      // Essayer de jouer l'audio
+      audioPlayer.play().then(() => {
+        console.log("Audio démarré avec succès");
+        document.getElementById('now-playing').textContent = "En cours: TATI Music";
+      }).catch(error => {
+        console.log("La lecture automatique a été bloquée:", error);
+        document.getElementById('now-playing').textContent = "Cliquez sur le bouton lecture pour démarrer la musique";
+      });
+      
+      // Nettoyer l'écouteur après la première interaction
+      document.removeEventListener('click', initAudio);
+    }, { once: true });
   </script>
 </body>
 </html>
