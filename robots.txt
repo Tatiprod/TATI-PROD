@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://beatvisionmedia-rgb.github.io/TATI-PROD/sitemap.xml
