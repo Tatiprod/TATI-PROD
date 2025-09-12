@@ -109,66 +109,67 @@
     .col-4{ grid-column: span 4 }
     .col-6{ grid-column: span 6 }
     .col-12{ grid-column: span 12 }
-    
     /* Carousel */
-    .carousel {
-      position: relative;
-      overflow: hidden;
-      border-radius: 12px;
-      box-shadow: var(--shadow);
-    }
+.carousel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
 
-    .carousel-track {
-      display: flex;
-      transition: transform 0.8s ease-in-out;
-    }
+.carousel-track {
+  display: flex;
+  transition: transform 0.8s ease-in-out;
+}
 
-    .carousel figure {
-      min-width: 100%; /* chaque image prend toute la largeur */
-      margin: 0;
-      position: relative;
-    }
+.carousel figure {
+  min-width: 100%; /* chaque image prend toute la largeur */
+  margin: 0;
+  position: relative;
+}
 
-    .carousel img {
-      width: 100%;
-      height: 360px;
-      object-fit: cover;
-      display: block;
-      border-radius: 12px;
-    }
+.carousel img {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  display: block;
+  border-radius: 12px;
+}
 
-    .carousel figcaption {
-      position: absolute;
-      bottom: 10px;
-      left: 15px;
-      color: white;
-      background: rgba(0,0,0,0.4);
-      padding: .3rem .6rem;
-      border-radius: 6px;
-      font-size: .9rem;
-    }
-    
-    /* Boutons de navigation du carrousel */
-    .carousel-nav {
-      position: absolute;
-      bottom: 15px;
-      right: 15px;
-      display: flex;
-      gap: 8px;
-    }
-    
-    .carousel-btn {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.5);
-      border: none;
-      cursor: pointer;
-    }
-    
-    .carousel-btn.active {
-      background: white;
-    }
+.carousel figcaption {
+  position: absolute;
+  bottom: 10px;
+  left: 15px;
+  color: white;
+  background: rgba(0,0,0,0.4);
+  padding: .3rem .6rem;
+  border-radius: 6px;
+  font-size: .9rem;
+}
+
+/* Navigation du carrousel */
+.carousel-nav {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.carousel-btn {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.5);
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.carousel-btn.active {
+  background: white;
+}
 
     /* Média */
     .media-row{ display:grid; gap:1rem; grid-template-columns: repeat(12, 1fr); align-items:start; }
@@ -220,9 +221,6 @@
       .video-card{ grid-column: span 12; }
       .col-4{ grid-column: span 6 }
       .gallery img{ height:220px }
-      .carousel img {
-        height: 300px;
-      }
     }
     @media (max-width: 560px){
       .menu{ display:none }
@@ -230,9 +228,6 @@
       .col-4{ grid-column: span 12 }
       .actions {
         flex-direction: column;
-      }
-      .carousel img {
-        height: 250px;
       }
     }
   </style>
@@ -301,7 +296,6 @@
           <img src="471190812_1341734753862766_2809767936287962854_n.jpg" alt="equipe tati prod" />
           <figcaption>Equipe tati prod</figcaption>
         </figure>
-        
         <!-- Carrousel -->
         <div class="card col-12 carousel">
           <div class="carousel-track">
@@ -320,86 +314,89 @@
           </div>
         </div>
       </div>
-    </section>
+  </section>
 
-    <!-- Vidéos -->
-    <section id="videos">
-      <h2>Vidéos</h2>
-      <p class="muted">Exemples de vidéos intégrées depuis YouTube.</p>
-      <div class="videos">
-        
-        <!-- Première Vidéo -->
-        <div class="video-card card">
-          <iframe 
-            src="https://www.youtube.com/embed/SJfNb0EsWEw" 
-            title="Clip promotionnel"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-            allowfullscreen>
-          </iframe>
-          <h3>Clip promotionnel</h3>
-          <p class="muted">Un court teaser pour présenter votre marque.</p>
-        </div>
+<!-- Vidéos -->
+<section id="videos">
+  <h2>Vidéos</h2>
+  <p class="muted">Exemples de vidéos intégrées depuis YouTube.</p>
+  <div class="videos">
+    
+    <!-- Première Vidéo -->
+    <div class="video-card card">
+      <iframe 
+        src="https://www.youtube.com/embed/SJfNb0EsWEw" 
+        title="Clip promotionnel"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        allowfullscreen>
+      </iframe>
+      <h3>Clip promotionnel</h3>
+      <p class="muted">Un court teaser pour présenter votre marque.</p>
+    </div>
 
-        <!-- Deuxième Vidéo - URL corrigée -->
-        <div class="video-card card">
-          <iframe 
-            src="https://www.youtube.com/embed/hZeoKw-8tFs" 
-            title="Présentation de la marque"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-            allowfullscreen>
-          </iframe>
-          <h3>Présentation de la marque</h3>
-          <p class="muted">Une deuxième vidéo pour mettre en avant vos services.</p>
-        </div>
-      </div>
-    </section>
+    <!-- Deuxième Vidéo - URL corrigée -->
+    <div class="video-card card">
+      <iframe 
+        src="https://www.youtube.com/embed/hZeoKw-8tFs" 
+        title="Présentation de la marque"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        allowfullscreen>
+      </iframe>
+      <h3>Présentation de la marque</h3>
+      <p class="muted">Une deuxième vidéo pour mettre en avant vos services.</p>
+    </div>
 
-    <!-- Audio -->
-    <section id="audio">
-      <h2>Audio & Podcast</h2>
-      <p class="muted">Lecture automatique de ta musique.</p>
-      <div class="media-row">
-        <div class="player card">
-          <audio id="audio-player" controls preload="auto" autoplay loop aria-label="Lecteur audio">
-            <source id="audio-src" src="tatimusic.mp3" type="audio/mpeg" />
-            Votre navigateur ne supporte pas l'audio HTML5.
-          </audio>
-          <p class="muted" id="now-playing">Lecture : tatimusic.mp3</p>
-        </div>
-      </div>
-    </section>
+  </div>
+</section>
 
-    <!-- Contact -->
-    <section id="contact">
-      <h2>Contact</h2>
-      <p class="muted">Parlez-nous de votre projet. Nous répondons sous 24h.</p>
+   <!-- Audio -->
+<section id="audio">
+  <h2>Audio & Podcast</h2>
+  <p class="muted">Lecture automatique de ta musique.</p>
+  <div class="media-row">
+    <div class="player card">
+      <audio id="audio-player" controls preload="auto" autoplay loop aria-label="Lecteur audio">
+        <source id="audio-src" src="tatimusic.mp3" type="audio/mpeg" />
+        Votre navigateur ne supporte pas l'audio HTML5.
+      </audio>
+      <p class="muted" id="now-playing">Lecture : tatimusic.mp3</p>
+    </div>
+  </div>
+</section>
 
-      <form id="contact-form" class="card" action="https://formspree.io/f/mwpnzeyj" method="POST">
-        <div class="col-6">
-          <label for="name">Nom</label>
-          <input type="text" id="name" name="name" placeholder="Votre nom" required />
-        </div>
 
-        <div class="col-6">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="nom@domaine.com" required />
-        </div>
+ <!-- Contact -->
+<section id="contact">
+  <h2>Contact</h2>
+  <p class="muted">Parlez-nous de votre projet. Nous répondons sous 24h.</p>
 
-        <div class="col-12">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="5" placeholder="Décrivez votre besoin…" required></textarea>
-        </div>
+  <form id="contact-form" class="card" action="https://formspree.io/f/mwpnzeyj" method="POST">
+    <div class="col-6">
+      <label for="name">Nom</label>
+      <input type="text" id="name" name="name" placeholder="Votre nom" required />
+    </div>
 
-        <div class="col-12 actions">
-          <button class="cta" type="submit">Envoyer</button>
-          <button class="cta" type="reset" style="background:transparent; border:1px solid color-mix(in srgb, var(--text) 14%, transparent); color:var(--text)">Effacer</button>
-        </div>
-        
-        <div id="confirmation" class="confirmation">
-          Merci pour votre message ! Nous vous répondrons dans les plus brefs délais.
-        </div>
-      </form>
-    </section>
+    <div class="col-6">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="nom@domaine.com" required />
+    </div>
+
+    <div class="col-12">
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="5" placeholder="Décrivez votre besoin…" required></textarea>
+    </div>
+
+    <div class="col-12 actions">
+      <button class="cta" type="submit">Envoyer</button>
+      <button class="cta" type="reset" style="background:transparent; border:1px solid color-mix(in srgb, var(--text) 14%, transparent); color:var(--text)">Effacer</button>
+    </div>
+    
+    <div id="confirmation" class="confirmation">
+      Merci pour votre message ! Nous vous répondrons dans les plus brefs délais.
+    </div>
+  </form>
+</section>
+
   </main>
 
   <footer>
@@ -430,11 +427,12 @@
     });
     dlg?.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
 
-    // Carrousel fonctionnalité
+    // Fonctionnalité du carrousel
     const carouselTrack = document.querySelector('.carousel-track');
     const carouselItems = document.querySelectorAll('.carousel figure');
     const carouselButtons = document.querySelectorAll('.carousel-btn');
     let currentIndex = 0;
+    let carouselInterval;
     
     // Fonction pour mettre à jour le carrousel
     function updateCarousel() {
@@ -446,20 +444,34 @@
       });
     }
     
+    // Fonction pour passer à la diapositive suivante
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % carouselItems.length;
+      updateCarousel();
+    }
+    
     // Ajouter les événements aux boutons du carrousel
     carouselButtons.forEach(btn => {
       btn.addEventListener('click', () => {
+        // Arrêter le défilement automatique temporairement
+        clearInterval(carouselInterval);
+        
         currentIndex = parseInt(btn.getAttribute('data-index'));
         updateCarousel();
+        
+        // Redémarrer le défilement automatique après 5 secondes
+        setTimeout(startCarousel, 5000);
       });
     });
     
-    // Défilement automatique du carrousel
-    setInterval(() => {
-      currentIndex = (currentIndex + 1) % carouselItems.length;
-      updateCarousel();
-    }, 5000); // Change d'image toutes les 5 secondes
-
+    // Démarrer le défilement automatique
+    function startCarousel() {
+      carouselInterval = setInterval(nextSlide, 4000); // Change d'image toutes les 4 secondes
+    }
+    
+    // Démarrer le carrousel automatiquement
+    startCarousel();
+    
     // Gestion du formulaire
     const contactForm = document.getElementById('contact-form');
     const confirmation = document.getElementById('confirmation');
