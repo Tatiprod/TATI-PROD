@@ -47,7 +47,12 @@
       "@type": "ContactPoint",
       "contactType": "customer service",
       "availableLanguage": "French"
-    }
+    },
+    "sameAs": [
+      "https://www.facebook.com/prod.audiovisuelle/",
+      "https://www.youtube.com/@tatiprods/",
+      "https://www.instagram.com/tatiproduction221/"
+    ]
   }
   </script>
 
@@ -267,6 +272,37 @@
       border: 1px dashed var(--secondary);
     }
 
+    /* Style pour les réseaux sociaux */
+    .social-section {
+      text-align: center;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid color-mix(in srgb, var(--text) 15%, transparent);
+    }
+    
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    
+    .social-icons a {
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+    
+    .social-icons a:hover {
+      transform: scale(1.1);
+    }
+    
+    .social-icons img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      box-shadow: var(--shadow);
+    }
+
     /* Footer */
     footer{ padding:2rem 0 4rem; color:var(--muted); font-size:.95rem; border-top: 1px solid color-mix(in srgb, var(--text) 8%, transparent) }
 
@@ -298,6 +334,13 @@
       }
       .carousel {
         height: 250px;
+      }
+      .social-icons {
+        gap: 1rem;
+      }
+      .social-icons img {
+        width: 45px;
+        height: 45px;
       }
     }
   </style>
@@ -484,32 +527,22 @@
       Merci pour votre message ! Nous vous répondrons dans les plus brefs délais.
     </div>
   </form>
-  <center>
-<br>
-<p>Suivez nous sur </p>
-<br>
 
-<table>
-  <tr>
-    <td>
-  <a href="https://www.facebook.com/prod.audiovisuelle/" target="_blank">
-    <img src="facebook.png" width="50" alt="Facebook">
-  </a>
-</td>
-<td>
-  <a href="https://www.youtube.com/@tatiprods/" target="_blank">
-    <img src="youtube_logo_icon_181745.png" width="50" alt="YouTube">
-  </a>
-</td>
-<td>
-  <a href="https://www.instagram.com/tatiproduction221/" target="_blank">
-    <img src="instagra.png" width="50" alt="Instagram">
-  </a>
-</td>
-
-  </tr>
-</table>
-</center>
+  <!-- Section Réseaux Sociaux -->
+  <div class="social-section">
+    <p>Suivez-nous sur</p>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/prod.audiovisuelle/" target="_blank" aria-label="Suivez-nous sur Facebook">
+        <img src="facebook.png" width="50" alt="Facebook TATI Production">
+      </a>
+      <a href="https://www.youtube.com/@tatiprods/" target="_blank" aria-label="Suivez-nous sur YouTube">
+        <img src="youtube_logo_icon_181745.png" width="50" alt="YouTube TATI Production">
+      </a>
+      <a href="https://www.instagram.com/tatiproduction221/" target="_blank" aria-label="Suivez-nous sur Instagram">
+        <img src="instagra.png" width="50" alt="Instagram TATI Production">
+      </a>
+    </div>
+  </div>
 </section>
 
   </main>
@@ -605,8 +638,6 @@
         }, 5000);
       }, 1000);
     });
-    
-    // SUPPRIMÉ: Code de tentative de lecture automatique de l'audio
   </script>
 </body>
 </html>
