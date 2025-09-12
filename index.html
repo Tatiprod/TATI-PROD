@@ -382,40 +382,25 @@
   </div>
 </section>
 
-<!-- Section Audio -->
+   <!-- Audio -->
 <section id="audio">
-  <h2>Audio</h2>
-  <p class="muted">Écoutez nos dernières productions musicales.</p>
-  
+  <h2>Audio & Podcast</h2>
+  <p class="muted">Lecture automatique de ta musique.</p>
   <div class="media-row">
     <div class="player card">
-      <audio id="audio-player" controls aria-label="Lecteur audio">
+      <audio id="audio-player" controls preload="auto" aria-label="Lecteur audio">
         <source id="audio-src" src="tatimusic.mp3" type="audio/mpeg" />
         Votre navigateur ne supporte pas l'audio HTML5.
       </audio>
-      <p id="now-playing" style="margin-top: 10px; font-style: italic; color: var(--muted);">
-        Cliquez sur le bouton lecture pour démarrer la musique
+      <p class="muted" id="now-playing">Lecture : tatimusic.mp3</p>
+      <p class="muted" style="font-size: 0.8rem; margin-top: 0.5rem;">
+        <strong>Note :</strong> La lecture automatique peut être bloquée par votre navigateur. 
+        Cliquez sur le bouton lecture pour démarrer la musique.
       </p>
-    </div>
-    
-    <div class="playlist">
-      <div class="track active" data-src="tatimusic.mp3">
-        <div>
-          <strong>TATI Music</strong><br>
-          <small>Production originale</small>
-        </div>
-        <span>3:42</span>
-      </div>
-      <div class="track" data-src="https://assets.codepen.io/21542/howler-demo-bummp3.mp3">
-        <div>
-          <strong>Exemple de piste</strong><br>
-          <small>Artiste inconnu</small>
-        </div>
-        <span>2:18</span>
-      </div>
     </div>
   </div>
 </section>
+
 
  <!-- Contact -->
 <section id="contact">
@@ -541,46 +526,24 @@
       }, 1000);
     });
     
-    // Gestion de l'audio
+    // Tentative de lecture automatique de l'audio avec gestion d'erreur
     const audioPlayer = document.getElementById('audio-player');
-    const tracks = document.querySelectorAll('.track');
     
-    // Fonction pour changer de piste
-    function changeTrack(src) {
-      audioPlayer.src = src;
-      audioPlayer.play().catch(error => {
-        console.log("Lecture audio bloquée:", error);
-        document.getElementById('now-playing').textContent = "Cliquez sur le bouton lecture pour démarrer la musique";
-      });
+    // Essayer de jouer l'audio automatiquement
+    const tryAutoplay = () => {
+      const playPromise = audioPlayer.play();
       
-      // Mettre à jour l'interface
-      tracks.forEach(track => track.classList.remove('active'));
-      event.currentTarget.classList.add('active');
-      
-      document.getElementById('now-playing').textContent = "En cours: " + event.currentTarget.querySelector('strong').textContent;
-    }
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          console.log("La lecture automatique a été bloquée:", error);
+          // Afficher un message pour l'utilisateur
+          document.getElementById('now-playing').textContent = "Cliquez sur le bouton lecture pour démarrer la musique";
+        });
+      }
+    };
     
-    // Ajouter les événements aux pistes
-    tracks.forEach(track => {
-      track.addEventListener('click', (e) => {
-        changeTrack(track.getAttribute('data-src'));
-      });
-    });
-    
-    // Démarrage de l'audio après interaction utilisateur
-    document.addEventListener('click', function initAudio() {
-      // Essayer de jouer l'audio
-      audioPlayer.play().then(() => {
-        console.log("Audio démarré avec succès");
-        document.getElementById('now-playing').textContent = "En cours: TATI Music";
-      }).catch(error => {
-        console.log("La lecture automatique a été bloquée:", error);
-        document.getElementById('now-playing').textContent = "Cliquez sur le bouton lecture pour démarrer la musique";
-      });
-      
-      // Nettoyer l'écouteur après la première interaction
-      document.removeEventListener('click', initAudio);
-    }, { once: true });
+    // Attendre que la page soit complètement chargée avant de tenter la lecture automatique
+    window.addEventListener('load', tryAutoplay);
   </script>
 </body>
 </html>
