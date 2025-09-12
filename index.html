@@ -382,24 +382,11 @@
   </div>
 </section>
 
-   <!-- Audio -->
-<section id="audio">
-  <h2>Audio & Podcast</h2>
-  <p class="muted">Lecture automatique de ta musique.</p>
-  <div class="media-row">
-    <div class="player card">
-      <audio id="audio-player" controls preload="auto" aria-label="Lecteur audio">
-        <source id="audio-src" src="tatimusic.mp3" type="audio/mpeg" />
-        Votre navigateur ne supporte pas l'audio HTML5.
-      </audio>
-      <p class="muted" id="now-playing">Lecture : tatimusic.mp3</p>
-      <p class="muted" style="font-size: 0.8rem; margin-top: 0.5rem;">
-        <strong>Note :</strong> La lecture automatique peut être bloquée par votre navigateur. 
-        Cliquez sur le bouton lecture pour démarrer la musique.
-      </p>
-    </div>
-  </div>
-</section>
+  <audio id="audio-player" controls preload="auto" autoplay loop aria-label="Lecteur audio">
+  <source id="audio-src" src="tatimusic.mp3" type="audio/mpeg" />
+  Votre navigateur ne supporte pas l'audio HTML5.
+</audio>
+
 
 
  <!-- Contact -->
@@ -527,8 +514,15 @@
     });
     
     // Tentative de lecture automatique de l'audio avec gestion d'erreur
-    const audioPlayer = document.getElementById('audio-player');
-    
+   <script>
+document.addEventListener("click", () => {
+  const audio = document.getElementById("audio-player");
+  if (audio.paused) {
+    audio.play().catch(err => console.log("Autoplay bloqué :", err));
+  }
+});
+</script>
+
     // Essayer de jouer l'audio automatiquement
     const tryAutoplay = () => {
       const playPromise = audioPlayer.play();
