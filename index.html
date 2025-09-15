@@ -704,10 +704,10 @@
     });
     dlg?.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
 
-    // ---- Galerie Carousel ----
-const galerieCarousel = document.querySelector('#galerie-carousel .carousel-track');
-const galerieItems = document.querySelectorAll('#galerie-carousel .carousel-track figure');
-const galerieButtons = document.querySelectorAll('#galerie-carousel .carousel-btn');
+ // ---- Galerie Carousel ----
+const galerieCarousel = document.querySelector('#galerie .carousel-track');
+const galerieItems = document.querySelectorAll('#galerie .carousel-track figure');
+const galerieButtons = document.querySelectorAll('#galerie .carousel-btn');
 
 let galerieIndex = 0;
 let galerieInterval;
@@ -758,6 +758,7 @@ prevFormation.addEventListener('click', () => {
   formationIndex = (formationIndex - 1 + formationSlides.length) % formationSlides.length;
   updateFormationCarousel();
 });
+
 
 
 
