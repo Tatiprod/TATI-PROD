@@ -1,50 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <!-- Page d'accueil -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
   <url>
     <loc>https://tatiprod.github.io/TATI-PROD/</loc>
-    <lastmod>2025-09-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-
-  <!-- Galerie -->
+  
   <url>
     <loc>https://tatiprod.github.io/TATI-PROD/#galerie</loc>
-    <lastmod>2025-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Formation -->
   <url>
     <loc>https://tatiprod.github.io/TATI-PROD/#formation</loc>
-    <lastmod>2025-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Vidéos -->
   <url>
     <loc>https://tatiprod.github.io/TATI-PROD/#videos</loc>
-    <lastmod>2025-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Audio -->
   <url>
     <loc>https://tatiprod.github.io/TATI-PROD/#audio</loc>
-    <lastmod>2025-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Contact -->
   <url>
     <loc>https://tatiprod.github.io/TATI-PROD/#contact</loc>
-    <lastmod>2025-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
