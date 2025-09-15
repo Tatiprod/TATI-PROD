@@ -532,13 +532,12 @@
       </div>
   </section>
 
-
-       <!-- Formation (Carousel) -->
+<!-- Formation (Carousel) -->
 <section id="formation">
   <h2>Nos Formations</h2>
   <p class="muted">Quelques aperçus des formations proposées par TATI Production.</p>
 
-  <div class="carousel">
+  <div id="formation-carousel" class="carousel">
     <div class="carousel-track">
       <!-- Slide 1 -->
       <div class="slide">
@@ -546,21 +545,18 @@
         <h3>Montage Vidéo</h3>
         <p>Apprenez les bases et techniques avancées du montage.</p>
       </div>
-
       <!-- Slide 2 -->
       <div class="slide">
         <img src="formation2.jpg" alt="Formation prise de vue">
         <h3>Prise de Vue</h3>
         <p>Maîtrisez l’art de la caméra, de l’éclairage et des plans.</p>
       </div>
-
       <!-- Slide 3 -->
       <div class="slide">
         <img src="formation3.jpg" alt="Formation audio">
         <h3>Production Audio</h3>
         <p>De l’enregistrement au mixage, explorez la production sonore.</p>
       </div>
-
       <!-- Slide 4 -->
       <div class="slide">
         <img src="formation4.jpg" alt="Formation communication digitale">
@@ -750,28 +746,28 @@
     }
     
     // Démarrer le carrousel automatiquement
-    startCarousel();
-// formation
-  const track = document.querySelector('.carousel-track');
-  const slides = Array.from(track.children);
-  const nextButton = document.querySelector('.next');
-  const prevButton = document.querySelector('.prev');
+// ---- Formation Carousel ----
+const formationCarousel = document.querySelector('#formation-carousel .carousel-track');
+const formationSlides = Array.from(formationCarousel.children);
+const nextFormation = document.querySelector('#formation-carousel .next');
+const prevFormation = document.querySelector('#formation-carousel .prev');
 
-  let currentIndex = 0;
+let formationIndex = 0;
 
-  function updateCarousel() {
-    track.style.transform = `translateX(-${currentIndex * 100}%)`;
-  }
+function updateFormationCarousel() {
+  formationCarousel.style.transform = `translateX(-${formationIndex * 100}%)`;
+}
 
-  nextButton.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % slides.length;
-    updateCarousel();
-  });
+nextFormation.addEventListener('click', () => {
+  formationIndex = (formationIndex + 1) % formationSlides.length;
+  updateFormationCarousel();
+});
 
-  prevButton.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-    updateCarousel();
-  });
+prevFormation.addEventListener('click', () => {
+  formationIndex = (formationIndex - 1 + formationSlides.length) % formationSlides.length;
+  updateFormationCarousel();
+});
+
 
     // Gestion du formulaire
     const contactForm = document.getElementById('contact-form');
