@@ -243,6 +243,78 @@
     .track small{ color:var(--muted) }
     .track.active{ outline: var(--ring); }
 
+    /* Formation Carousel */
+#formation {
+  padding: 4rem 0;
+  text-align: center;
+}
+
+#formation h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.carousel {
+  position: relative;
+  width: 80%;
+  margin: 2rem auto;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  box-sizing: border-box;
+  padding: 1rem;
+  background: linear-gradient(180deg, #fff, #f9f9f9);
+}
+
+.slide img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.slide h3 {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+.slide p {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+/* Boutons */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border: none;
+  font-size: 2rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.carousel-btn.prev { left: 10px; }
+.carousel-btn.next { right: 10px; }
+
+.carousel-btn:hover {
+  background: rgba(0,0,0,0.8);
+}
+
+
     /* Vidéos */
     .videos{ display:grid; gap:1rem; grid-template-columns: repeat(12, 1fr) }
     .video-card{ grid-column: span 6; }
@@ -460,6 +532,50 @@
       </div>
   </section>
 
+
+       <!-- Formation (Carousel) -->
+<section id="formation">
+  <h2>Nos Formations</h2>
+  <p class="muted">Quelques aperçus des formations proposées par TATI Production.</p>
+
+  <div class="carousel">
+    <div class="carousel-track">
+      <!-- Slide 1 -->
+      <div class="slide">
+        <img src="formation1.jpg" alt="Formation montage vidéo">
+        <h3>Montage Vidéo</h3>
+        <p>Apprenez les bases et techniques avancées du montage.</p>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="slide">
+        <img src="formation2.jpg" alt="Formation prise de vue">
+        <h3>Prise de Vue</h3>
+        <p>Maîtrisez l’art de la caméra, de l’éclairage et des plans.</p>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="slide">
+        <img src="formation3.jpg" alt="Formation audio">
+        <h3>Production Audio</h3>
+        <p>De l’enregistrement au mixage, explorez la production sonore.</p>
+      </div>
+
+      <!-- Slide 4 -->
+      <div class="slide">
+        <img src="formation4.jpg" alt="Formation communication digitale">
+        <h3>Communication Digitale</h3>
+        <p>Apprenez à diffuser efficacement vos créations en ligne.</p>
+      </div>
+    </div>
+
+    <!-- Boutons -->
+    <button class="carousel-btn prev">❮</button>
+    <button class="carousel-btn next">❯</button>
+  </div>
+</section>
+
+
 <!-- Vidéos -->
 <section id="videos">
   <h2>Vidéos</h2>
@@ -635,7 +751,28 @@
     
     // Démarrer le carrousel automatiquement
     startCarousel();
-    
+// formation
+  const track = document.querySelector('.carousel-track');
+  const slides = Array.from(track.children);
+  const nextButton = document.querySelector('.next');
+  const prevButton = document.querySelector('.prev');
+
+  let currentIndex = 0;
+
+  function updateCarousel() {
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+  }
+
+  nextButton.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % slides.length;
+    updateCarousel();
+  });
+
+  prevButton.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    updateCarousel();
+  });
+
     // Gestion du formulaire
     const contactForm = document.getElementById('contact-form');
     const confirmation = document.getElementById('confirmation');
