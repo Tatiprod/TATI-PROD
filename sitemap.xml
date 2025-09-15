@@ -1,33 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Page d'accueil -->
   <url>
-    <loc>https://beatvisionmedia-rgb.github.io/TATI-PROD/</loc>
-    <lastmod>2025-09-13</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://tatiprod.github.io/TATI-PROD/</loc>
+    <lastmod>2025-09-15</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+
+  <!-- Galerie -->
   <url>
-    <loc>https://beatvisionmedia-rgb.github.io/TATI-PROD/#galerie</loc>
-    <lastmod>2025-09-13</lastmod>
+    <loc>https://tatiprod.github.io/TATI-PROD/#galerie</loc>
+    <lastmod>2025-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- Formation -->
   <url>
-    <loc>https://beatvisionmedia-rgb.github.io/TATI-PROD/#videos</loc>
-    <lastmod>2025-09-13</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://tatiprod.github.io/TATI-PROD/#formation</loc>
+    <lastmod>2025-09-15</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- Vidéos -->
   <url>
-    <loc>https://beatvisionmedia-rgb.github.io/TATI-PROD/#audio</loc>
-    <lastmod>2025-09-13</lastmod>
+    <loc>https://tatiprod.github.io/TATI-PROD/#videos</loc>
+    <lastmod>2025-09-15</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
+
+  <!-- Audio -->
   <url>
-    <loc>https://beatvisionmedia-rgb.github.io/TATI-PROD/#contact</loc>
-    <lastmod>2025-09-13</lastmod>
+    <loc>https://tatiprod.github.io/TATI-PROD/#audio</loc>
+    <lastmod>2025-09-15</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
+
+  <!-- Contact -->
+  <url>
+    <loc>https://tatiprod.github.io/TATI-PROD/#contact</loc>
+    <lastmod>2025-09-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
