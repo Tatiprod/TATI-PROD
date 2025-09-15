@@ -1,8 +1,4 @@
-# robots.txt pour TATI Production
-
 User-agent: *
-Disallow: /admin/
-Disallow: /private/
 Allow: /
 
 Sitemap: https://tatiprod.github.io/TATI-PROD/sitemap.xml
